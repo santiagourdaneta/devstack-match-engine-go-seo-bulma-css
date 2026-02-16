@@ -1,0 +1,14 @@
+[
+  {
+    "ID": "go-vs-rust",
+    "Title": "Go vs Rust: ¿Cuál elegir para Backend en 2026?",
+    "Description": "Comparativa profunda de rendimiento, concurrencia y curva de aprendizaje entre Go y Rust.",
+    "Category": "Backend"
+  },
+  {
+    "ID": "react-vs-vue",
+    "Title": "React vs Vue: Guía de selección para Frontend",
+    "Description": "Analizamos el ecosistema, la velocidad de desarrollo y el SEO en React y Vue.",
+    "Category": "Frontend"
+  }
+]

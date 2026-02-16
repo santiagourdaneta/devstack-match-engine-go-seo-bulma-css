@@ -1,0 +1,38 @@
+name: Deploy DevStack-Match to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Se ejecuta cada vez que haces push a main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21' # O la versión que estés usando
+
+      - name: Install Dependencies
+        run: go mod tidy
+
+      - name: Build and Generate Site
+        run: |
+          mkdir -p assets/fonts
+          # Descargar fuente para las imágenes OG
+          curl -L -o assets/fonts/Roboto-Bold.ttf https://github.com/google/fonts/raw/main/apache/roboto/static/Roboto-Bold.ttf
+          # Ejecutar el generador
+          go run main.go
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist # La carpeta que se subirá al hosting
+          branch: gh-pages # Rama de destino para el despliegue
